@@ -1,0 +1,50 @@
+* {
+    margin: 0;
+    padding: 0;
+}
+.grid-container__item {
+    background-color: lightblue;
+    margin: 10px;
+    text-align: center;
+    padding: 1rem;
+}
+.grid-container__item:first-child{
+    background-color: greenyellow;
+    grid-area: A;
+}
+.grid-container__item:last-child {
+    background-color: tomato;
+    grid-area: B;
+}
+.grid-container__item:nth-child(2){
+ grid-area: Z;
+}
+.grid-container__item:nth-child(3){
+   grid-area: D; 
+}
+.grid-container {
+    display: grid;
+    /* fraction */
+    grid-template-columns: 1fr 4fr;
+    grid-template-rows: 1fr 6fr 1fr;
+    counter-reset: line;
+    grid-template-areas: 
+    'A A A '
+    'Z D D'
+    'B B B'
+    ;
+}
+.grid-container__item::before {
+    counter-increment: line;
+    content: counter(line);
+}
+@media screen and (max-width: 380px) {
+ .grid-container {
+    grid-template-areas: 
+    'D D D'
+    'Z Z Z'
+    'B B B'
+    'A A A'
+    ;
+ }   
+}
